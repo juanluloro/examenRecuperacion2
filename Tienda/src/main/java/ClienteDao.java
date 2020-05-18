@@ -1,5 +1,6 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ClienteDao {
     private DBConn db;
@@ -21,6 +22,38 @@ public class ClienteDao {
         } else {
             return false;
         }
+    }
+
+    public void actualizarCliente(Cliente cliente) throws SQLException {
+        String consulta="UPDATE cliente SET nombre ='"+cliente.getNombre()+"', dni= '"+cliente.getDni()+"' WHERE id= "+cliente.getId();
+        System.out.println(consulta);
+        db.queryUpdate(consulta);
+    }
+
+
+    public boolean borrarCliente(Cliente cliente) throws SQLException {
+        String delete = "DELETE FROM cliente WHERE id =" + cliente.getId();
+        int borrado = db.queryUpdate(delete);
+        if (borrado == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public ArrayList<Cliente> consultarClientes() throws SQLException {
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        String consulta = "SELECT * FROM cliente";
+        ResultSet resultado = db.query(consulta);
+        while (resultado.next() == true) {
+
+            int id = resultado.getInt("id");
+            String nombre = resultado.getString("nombre");
+            String dni = resultado.getString("dni");
+            Cliente cliente = new Cliente(nombre,dni,id);
+            clientes.add(cliente);
+        }
+        return clientes;
     }
 
 
