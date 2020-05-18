@@ -1,15 +1,13 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class DialogoCliente extends JDialog {
+public class DialogoBorrar extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField textFieldNombre;
-    private JTextField textFieldDni;
-    private DialogoClienteDatos datos;
+    private DialogoBorrarDatos datos;
 
-    public DialogoCliente(DialogoClienteDatos datos) {
+    public DialogoBorrar(DialogoBorrarDatos datos) {
         this.datos=datos;
         setContentPane(contentPane);
         setModal(true);
@@ -43,24 +41,13 @@ public class DialogoCliente extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    public void cargarDatos(Cliente cliente){
-        textFieldNombre.setText(cliente.getNombre());
-        textFieldDni.setText(cliente.getDni());
-    }
-
     private void onOK() {
-        datos.setPulsadoOk(true);
-        String nombre=textFieldNombre.getText();
-        String dni=textFieldDni.getText();
-        datos.setNombre(nombre);
-        datos.setDni(dni);
-        // add your code here
+        datos.setPulsadoOK(true);
         dispose();
     }
 
     private void onCancel() {
-        datos.setPulsadoOk(false);
-        // add your code here if necessary
+        datos.setPulsadoOK(false);
         dispose();
     }
 }

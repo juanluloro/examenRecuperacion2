@@ -43,4 +43,9 @@ public class Vista {
 
     }
 
+    public Cliente getClienteSeleccionado(){
+        Cliente cliente=(Cliente)listClientes.getSelectedValue();
+    return cliente;
+    }
+
 }
