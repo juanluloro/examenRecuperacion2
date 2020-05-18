@@ -1,5 +1,6 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CompraDao {
     private DBConn db;
@@ -26,7 +27,22 @@ public class CompraDao {
     }
 
 
-    public void consultarCompras(Cliente cliente){
+    public ArrayList<Compra> consultarComprasDeUnCliente(Cliente cliente) throws SQLException {
+            ArrayList<Compra> comprasCliente = new ArrayList<>();
+            String consulta = "SELECT * FROM compra WHERE id_cliente = "+cliente.getId();
+            ResultSet resultado = db.query(consulta);
+            while (resultado.next() == true) {
+
+                int id = resultado.getInt("id");
+                String producto = resultado.getString("producto");
+                int precio = resultado.getInt("precio");
+                int id_cliente=cliente.getId();
+                Compra compra = new Compra(id,producto,precio,id_cliente);
+                comprasCliente.add(compra);
+            }
+            return comprasCliente;
+        }
+
 
     }
-}
+

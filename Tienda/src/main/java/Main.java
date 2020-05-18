@@ -5,37 +5,47 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         ClienteDao clienteDao = new ClienteDao();
         CompraDao compraDao=new CompraDao();
-        Cliente cliente=new Cliente("Pedro García Contreras","12345678A");
+        Tienda tienda=new Tienda(compraDao,clienteDao);
+        //crear clientes
+        Cliente cliente1=new Cliente("Pedro García Contreras","12345678A");
         Cliente cliente2=new Cliente("Ana Pérez Rodríguez","23456789B");
-        Cliente cliente3=new Cliente("fsdfsdf","1222342378B");
-        clienteDao.insertarCliente(cliente);
-        clienteDao.insertarCliente(cliente2);
-        clienteDao.insertarCliente(cliente2);
+        //introducir cliente 1
+        tienda.introducirCLiente(cliente1);
+       //crear compras cliente 1
+        Compra chaleco=new Compra("Chaleco",30,cliente1.getId());
+        Compra tableta=new Compra("Tableta",250,cliente1.getId());
+        Compra quesoCurado=new Compra("Queso curado",15,cliente1.getId());
 
-        Cliente clienteAcualizado = new Cliente("Pedro García Contreras", "12345678C", 1);
+        //introducir compras cliente 1
+        tienda.introducirCompra(chaleco);
+        tienda.introducirCompra(tableta);
+        tienda.introducirCompra(quesoCurado);
+       //introducir cliente 2
+        tienda.introducirCLiente(cliente2);
+        //crear compras cliente 2
+        Compra zapatos=new Compra("Zapatos",30,cliente2.getId());
+        Compra movil=new Compra("Móvil",200,cliente2.getId());
+        Compra cafe=new Compra("Café en grano",15,cliente2.getId());
+        //introducir compras cliente 2
+        tienda.introducirCompra(zapatos);
+        tienda.introducirCompra(movil);
+        tienda.introducirCompra(cafe);
+        //mostrar todos los clientes y compras
+        tienda.mostrarClientesYCompras();
+        //modificar cliente
+        cliente1.setDni("12345678C");
+        tienda.actualizarCliente(cliente1);
+        //borrar cliente
+        tienda.borrarCliente(cliente2);
+        //introducir una compra a un cliente
+        Compra ensalada=new Compra("Ensalada",4,cliente1.getId());
+        tienda.introducirCompra(ensalada);
 
-        clienteDao.actualizarCliente(clienteAcualizado);
-       //// clienteDao.borrarCliente(clienteAcualizado);
-
-        Compra compra1=new Compra("patatas",20,2);
-        compraDao.insertarCompra(compra1);
 
 
-
-        System.out.println(clienteDao.consultarClientes());
 
 
 
     }
 
-
-
-    /*Cliente “Pedro García Contreras”, 12345678A
-◦ Chaleco – 30€
-◦ Tableta – 250€
-◦ Queso curado - 15€
-• Cliente “Ana Pérez Rodríguez”, 23456789B
-◦ Zapatos – 30€
-◦ Móvil – 200€
-◦ Café en grano - 15€*/
 }
