@@ -28,16 +28,26 @@ public class Vista {
         buttonRestar.setActionCommand(ControladorCalculadora.RESTAR);
 
         buttonMultiplicar.addActionListener(actionListener);
-        buttonMultiplicar.setActionCommand(ControladorCalculadora.RESTAR);
+        buttonMultiplicar.setActionCommand(ControladorCalculadora.MULTIPLICAR);
 
         buttonDividir.addActionListener(actionListener);
-        buttonDividir.setActionCommand(ControladorCalculadora.RESTAR);
+        buttonDividir.setActionCommand(ControladorCalculadora.DIVIDIR);
 
     }
 
     public Integer numeroIntroducidoA(){
         Integer numeroA=Integer.parseInt(textFieldA.getText());
         return numeroA;
+    }
+
+    public Integer numeroIntroducidoB(){
+        Integer numeroB=Integer.parseInt(textFieldA.getText());
+        return numeroB;
+    }
+
+    public void refrescarOperacion(String operacion){
+        textAreaResultado.append(operacion+"\n");
+
     }
 
 

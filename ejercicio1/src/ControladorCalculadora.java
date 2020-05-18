@@ -18,6 +18,28 @@ public class ControladorCalculadora implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+        String comando = actionEvent.getActionCommand();
+        if (comando.equals(SUMAR)) {
+            int numeroA = vista.numeroIntroducidoA();
+            int numeroB = vista.numeroIntroducidoB();
+            int resultado=calculadora.sumar(numeroA,numeroB);
+            vista.refrescarOperacion(numeroA+" + "+numeroB +" = "+ resultado);
+        }else if(comando.equals(RESTAR)){
+            int numeroA = vista.numeroIntroducidoA();
+            int numeroB = vista.numeroIntroducidoB();
+            int resultado=calculadora.restar(numeroA,numeroB);
+            vista.refrescarOperacion(numeroA+" - "+numeroB +" = "+ resultado);
+        }else if(comando.equals(MULTIPLICAR)){
+            int numeroA = vista.numeroIntroducidoA();
+            int numeroB = vista.numeroIntroducidoB();
+            int resultado=calculadora.multiplicar(numeroA,numeroB);
+            vista.refrescarOperacion(numeroA+" * "+numeroB +" = "+ resultado);
+        }else if(comando.equals(DIVIDIR)){
+            int numeroA = vista.numeroIntroducidoA();
+            int numeroB = vista.numeroIntroducidoB();
+            int resultado=calculadora.dividir(numeroA,numeroB);
+            vista.refrescarOperacion(numeroA+" / "+numeroB +" = "+ resultado);
+        }
 
     }
 
